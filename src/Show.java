@@ -2,16 +2,16 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Show {
-    public String title;
-    public int duration;
-    public Director director;
-    public ArrayList<Actor> listOfActors;
+    protected String title;
+    protected int duration;
+    protected Director director;
+    protected ArrayList<Actor> listOfActors;
 
-    public Show(String title, int duration, Director director, ArrayList<Actor> listOfActors) {
+    public Show(String title, int duration, Director director) {
         this.title = title;
         this.duration = duration;
         this.director = director;
-        this.listOfActors = listOfActors;
+        this.listOfActors = new ArrayList<>();
     }
 
     public void infoDirector() {
@@ -21,7 +21,7 @@ public class Show {
     public void infoActors() {
         System.out.println("Актеры спектакля " + title + ":");
         for (Actor actor : listOfActors) {
-            System.out.println(actor.toString());
+            System.out.println(actor);
         }
     }
 
@@ -37,15 +37,26 @@ public class Show {
     }
 
     public void changeOfCast(Actor newActor, String surnameOldActor) {
+        Actor actorToReplace = null;
+        int count = 0;
+
         for (Actor actor : listOfActors) {
             if (Objects.equals(actor.getSurname(), surnameOldActor)) {
-                listOfActors.remove(actor);
-                listOfActors.add(newActor);
-
-                System.out.println("Актер " + surnameOldActor  + " успешно заменен на актера " + newActor.getSurname() + " в спектакле " + title);
-            } else {
-                System.out.println("Актер " + surnameOldActor  + " отсутствует в спектакле " + title + ". Замена актеров невозможна.");
+                count++;
+                actorToReplace = actor;
             }
+        }
+
+        if (count == 0) {
+            System.out.println("Актер " + surnameOldActor + " отсутствует в спектакле " + title + ". Замена невозможна.");
+        } else if (count > 1) {
+            System.out.println("Найдено " + count + " актеров с фамилией " + surnameOldActor +
+                    ". Замена невозможна: неясно, кого именно нужно заменить.");
+        } else {
+            listOfActors.remove(actorToReplace);
+            listOfActors.add(newActor);
+            System.out.println("Актер " + surnameOldActor + " успешно заменен на актера " + newActor.getSurname() +
+                    " в спектакле " + title);
         }
     }
 }

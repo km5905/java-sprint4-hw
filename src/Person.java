@@ -2,17 +2,11 @@ public class Person {
     private String name;
     private String surname;
     private Gender gender;
-    private int height;
 
-    public Person(String name, String surname, Gender gender, int height) {
+    public Person(String name, String surname, Gender gender) {
         this.name = name;
         this.surname = surname;
         this.gender = gender;
-        this.height = height;
-    }
-
-    public int getHeight() {
-        return height;
     }
 
     public Gender getGender() {
@@ -25,5 +19,10 @@ public class Person {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String toString() {
+        return getName() + " " + getSurname();
     }
 }

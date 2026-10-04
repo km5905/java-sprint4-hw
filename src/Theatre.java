@@ -10,8 +10,8 @@ public class Theatre {
         Actor actorShalyapin = new Actor("Федор", "Шаляпин", Gender.MALE, 195);
         Actor actorBezrukov = new Actor("Сергей", "Безруков", Gender.MALE, 173);
 
-        MusicAuthor composerChaykovskiy = new MusicAuthor("Петр", "Чайковский", Gender.MALE, 220);
-        Choreographer choreographerPetipa = new Choreographer("Мариус", "Петипа", Gender.MALE, 80);
+        Person composerChaykovskiy = new Person("Петр", "Чайковский", Gender.MALE);
+        Person choreographerPetipa = new Person("Мариус", "Петипа", Gender.MALE);
 
         String librettoTextBallet = """
         Краткое содержание по актам:
@@ -26,9 +26,9 @@ public class Theatre {
         • Часть первая («Мир», картины 1–7)
         • Часть вторая («Война», картины 8–13)""";
 
-        Show show = new Show("Есенин", 90, directorFokin, new ArrayList<>());
-        Opera opera = new Opera("Война и мир", 120, directorPokrovsky, new ArrayList<>(), composerChaykovskiy, librettoTextOpera, 30);
-        Ballet ballet = new Ballet("Лебединое озеро", 120, directorFokin, new ArrayList<>(), composerChaykovskiy, librettoTextBallet, choreographerPetipa);
+        Show show = new Show("Есенин", 90, directorFokin);
+        Opera opera = new Opera("Война и мир", 120, directorPokrovsky, composerChaykovskiy, librettoTextOpera, 30);
+        Ballet ballet = new Ballet("Лебединое озеро", 120, directorFokin, composerChaykovskiy, librettoTextBallet, choreographerPetipa);
 
         show.addNewActor(actorPavlova);
         opera.addNewActor(actorShalyapin);
